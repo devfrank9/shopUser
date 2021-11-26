@@ -1,0 +1,47 @@
+{
+  "name": "shopuser",
+  "version": "1.0.0",
+  "description": "쇼핑몰 회원관리 연습",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevFrank9/shopUser.git"
+  },
+  "scripts": {
+    "dev:server": "nodemon",
+    "dev:assets": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DevFrank9",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DevFrank9/shopUser/issues"
+  },
+  "homepage": "https://github.com/DevFrank9/shopUser#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "bcrypt": "^5.0.1",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^10.0.0",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.2",
+    "mongoose": "^6.0.12",
+    "morgan": "^1.10.0",
+    "node-fetch": "^2.6.1",
+    "pug": "^3.0.2",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/node": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "mini-css-extract-plugin": "^2.4.4",
+    "nodemon": "^2.0.14",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.64.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
