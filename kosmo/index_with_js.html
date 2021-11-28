@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>쇼핑몰 회원관리</title>
+    <style>
+      /* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+      body {
+        line-height: 1;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        width: 100vw;
+        height: 100vh;
+        color: aliceblue;
+      }
+      header {
+        display: flex;
+        width: 100vw;
+        height: 20vh;
+        background-color: blue;
+        justify-content: center;
+        align-items: center;
+      }
+      .head-line__text {
+        font-size: 30px;
+      }
+      nav {
+        width: 100vw;
+        height: 10vh;
+        background-color: blueviolet;
+        display: flex;
+      }
+      ul {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        list-style: none;
+      }
+      li {
+        display: flex;
+        margin-left: 40px;
+      }
+      main {
+        background-color: gray;
+        height: 60vh;
+      }
+      .subject {
+        display: flex;
+        width: 100vw;
+        height: 20vh;
+        justify-content: center;
+        align-items: center;
+      }
+      .subject p {
+        margin: 50px;
+        font-size: 60px;
+        font-weight: 500;
+        color: black;
+      }
+      .user-join-form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .user-join-form__column {
+        display: flex;
+        justify-content: center;
+        height: 5vh;
+        width: 70vw;
+        border: solid 0.1px black;
+        opacity: 0.7;
+      }
+      .user-join-form__column_1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        font-size: 20px;
+      }
+      .user-join-form__column_2 {
+        display: flex;
+        align-items: center;
+        width:50vw
+      }
+      .user-join-form__column_2 > input {
+        width: 25vw;
+        margin-left: 10px;
+      }
+      .user-join-form__column_1,
+      .user-join-form__column_2 {
+        width: 50vw;
+        border: solid 0.5px black;
+      }
+      footer {
+        display: flex;
+        color: white;
+        background: linear-gradient(to right, blue, white);
+        height: 10vh;
+        align-items: center;
+        justify-content: center;
+      }
+      p {
+        display: flex;
+        text-align: center;
+      }
+      .user-join-form__button{
+        display: flex;
+        justify-content: center;
+      }
+      .hidden{
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="head-line">
+        <p class="head-line__text">쇼핑몰 회원관리 VER1.0</p>
+      </div>
+    </header>
+    <nav>
+      <ul>
+        <li>
+          <a href="#" id="join">회원등록</a>
+        </li>
+        <li>
+          <a href="#" id="edit">회원목록조회/수정</a>
+        </li>
+        <li>
+          <a href="#" id="search">회원매출조회</a>
+        </li>
+        <li>
+          <a href="#" id="home">홈으로</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- 회원등록 페이지 -->
+    <main id="mainOne">
+      <div class="subject">
+        <p>쇼핑몰 회원등록</p>
+      </div>
+      <div class="user-join-form">
+        <form method="POST">
+          <div class="user-join-form__column">
+            <div class="user-join-form__column_1">
+              <p>회원번호(자동발생)</p>
+            </div>
+            <div class="user-join-form__column_2">
+              <input type="text" id="user-id" />
+            </div>
+          </div>
+          <div class="user-join-form__column">
+            <div class="user-join-form__column_1">
+              <p>회원성명</p>
+            </div>
+            <div class="user-join-form__column_2">
+              <input type="text" id="user-name" />
+            </div>
+          </div>
+          <div class="user-join-form__column">
+            <div class="user-join-form__column_1">
+              <p>회원주소</p>
+            </div>
+            <div class="user-join-form__column_2">
+              <input type="text" id="user-address" />
+            </div>
+          </div>
+          <div class="user-join-form__column">
+            <div class="user-join-form__column_1">
+              <p>가입일자</p>
+            </div>
+            <div class="user-join-form__column_2">
+              <input type="text" id="join-date" />
+            </div>
+          </div>
+          <div class="user-join-form__column">
+            <div class="user-join-form__column_1">
+              <p>고객등급(A:VIP,B:일반,C:직원)</p>
+            </div>
+            <div class="user-join-form__column_2">
+              <select id="등급">
+                <option value="">A:VIP</option>
+                <option value="">B:일반</option>
+                <option value="">C:직원</option>
+              </select>
+            </div>
+          </div>
+          <div class="user-join-form__column">
+            <div class="user-join-form__column_1">
+              <p>도시코드</p>
+            </div>
+            <div class="user-join-form__column_2">
+              <input type="text" id="city-code" />
+            </div>
+          </div>
+          <div class="user-join-form__button">
+              <input type="submit" value="등록">
+              <input type="submit" value="조회">
+          </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <!-- 홈 -->
+    <main id="mainTwo" class="hidden">
+      <h1>홈페이지이이이이이이이이이이잉 앗쌀라말라이쿱</h1>
+    </main>
+    <!-- 등록한 회원 조회 -->
+    <main id="mainThird" class="hidden">
+      <div class="list">
+        <ul id="user-list"></ul>
+      </div>
+    </main>
+    <footer>
+      <p>
+        HRDKOREA Copyright&copy;2016 All right reserve. Human Resources
+        Development Service of Korea
+      </p>
+    </footer>
+    <script>
+      // 메인페이지 출력화면 불러오기
+      const mainOne = document.getElementById("mainOne");
+      const mainTwo = document.getElementById("mainTwo");
+      const mainThird = document.getElementById("mainThird");
+
+      // 회원등록 폼, 인풋 불러오기
+      const userForm = document.querySelector(".user-join-form");
+      const userList = document.getElementById("user-list");
+      const userId = document.getElementById("user-id");
+      const userInput = document.getElementById("user-name");
+      const userAddress = document.getElementById("user-address");
+      const joinDate = document.getElementById("join-date");
+      const cityCode = document.getElementById("city-code");
+
+      // nav 버튼 불러오기
+      const join = document.getElementById("join");
+      const home = document.getElementById("home");
+      const edit = document.getElementById("edit");
+
+      // user 정보 담을 그릇 준비
+      let users = [];
+
+      // 회원번호 새로고침시 출력
+      userId.value=Date.now();
+
+      // 저장 함수: 브라우저 로컬에 user키를 가진 users정보를 브라우저가
+      //            인식할수 있게 변환시켜 저장
+      function saveUsers () {
+        localStorage.setItem("user", JSON.stringify(users));
+      }
+
+      // 삭제 함수: 리스트에서 x를 누를때 스토리지에서 삭제 시킴
+      function deleteUser () {
+        const li = event.target.parentElement;
+        li.remove();
+        // 삭제시킨뒤 로컬에서 id가 아직 남아있는데,
+        // 화면에 출력된 id와 local에 남은 id 비교하여 안맞으면 로컬에서도 삭제
+        users = users.filter((user)=> user.id !== parseInt(li.id));
+        // 걸러낸것을 다시 저장
+        saveUsers();
+      }
+
+      // edit 페이지에 출력시킬 회원 정보 함수
+      function paintUsers (newUser) {
+        // 리스트를 html 만들어주고, 
+        const li = document.createElement("li");
+        // 그 리스트의 아이디를 생성시 발생되는 li고유의 id와 일치시켜준다.
+        li.id = newUser.id;
+        // span을 만들어주고,
+        const span = document.createElement("span");
+        // span의 내용에 생성되는 li의 내용과 일치시켜준다.
+        span.innerText = newUser.text;
+
+        // 삭제버튼 만들기
+        const button = document.createElement("button");
+        button.innerText="❌";
+        // 버튼에 클릭이벤트 넣어주기
+        button.addEventListener("click",deleteUser);
+
+        // js로 만든 span을 li에 넣어준다
+        li.appendChild(span);
+        // js로 만든 button을 li에 넣어준다
+        li.appendChild(button);
+        // js로 만든 li를 종합적으로 위의 전역으로 선언한 list에 넣어준다.
+        userList.appendChild(li);
+      }
+
+      // 제출 발생 함수
+      function handleSubmit(event) {
+        // submit이벤트는 발생되면 기본적으로 새로고침이 된다.
+        // 위의 기본설정값을 막기위해 preventDefault()를 쓴다.
+        event.preventDefault();
+        // 입력한 회원성명을 담아간다.
+        const newUser = userInput.value;
+        // 제출 발생시 입력값을 모두 비워준다.
+        userInput.value="";
+        userAddress.value="";
+        joinDate.value="";
+        cityCode.value="";
+        // 객체를 만들어 가져온 회원성명과 id를 담아준다.
+        const newUserObj = {
+          text: newUser,
+          id: Date.now(),
+        }
+        // 위의 선언한 users 그릇에 객체를 넣어준다.
+        users.push(newUserObj);
+        // 출력함수를 호출하여 객체를 생성자로 출력한다.
+        paintUsers(newUserObj);
+        // 마지막으로 저장함수 호출
+        saveUsers();
+      }
+
+      // 폼이 제출될때 발생시킬 함수 선언
+      userForm.addEventListener("submit", handleSubmit);
+      // 저장된 user정보 불러오기
+      const savedUsers = localStorage.getItem("user");
+      // 만약 로컬에 저장된 유저가 있을경우
+      if(savedUsers !== null) {
+        // 로컬에 저장된 것을 js에서 이해할수 있도록 변환
+        const parsedUsers = JSON.parse(savedUsers);
+        // users 그릇에 변환값 저장
+        users = parsedUsers;
+        // 변환값을 각각 화면에 뿌려주도록 각 값에 대해 출력함수 실행
+        parsedUsers.forEach(paintUsers);
+      }
+
+      // 밑의 할당하려는 함수들. 기본 홈페이지 외에 모두 hidden이라는
+      // css 클래스를 줘서 display를 제어한다.
+      function handleHome (event) {
+        event.preventDefault();
+        mainOne.classList.add("hidden");
+        mainTwo.classList.remove("hidden");
+        mainThird.classList.add("hidden");
+      }
+      function handleJoin (event) {
+        event.preventDefault();
+        mainOne.classList.remove("hidden");
+        mainTwo.classList.add("hidden");
+        mainThird.classList.add("hidden");
+      }
+      function handleEdit (event) {
+        event.preventDefault();
+        mainOne.classList.add("hidden");
+        mainTwo.classList.add("hidden");
+        mainThird.classList.remove("hidden");
+      }
+      // 각 nav버튼의 클릭이벤트 실행시 할당되는 함수들
+      home.addEventListener("click", handleHome);
+      join.addEventListener("click", handleJoin);
+      edit.addEventListener("click", handleEdit);
+    </script>
+  </body>
+</html>
